@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Hello, my dear {name}</h1>
-        <img width="100px" src={logo}></img>
+        <img width="300px" src={logo}></img>
       </header>
     </div>
   );
