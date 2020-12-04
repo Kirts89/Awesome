@@ -10,9 +10,9 @@ function TopNavbar() {
         <img src={logo} className={s.logo} alt="logo"/>
       </Navbar.Brand>
       <Nav className="mr-auto">
-        <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link href="#features">Features</Nav.Link>
-        <Nav.Link href="#pricing">Pricing</Nav.Link>
+        <Nav.Link href="#home">Главная</Nav.Link>
+        <Nav.Link href="#features">Вся продукция</Nav.Link>
+        <Nav.Link href="#pricing">Контакты</Nav.Link>
       </Nav>
     </Navbar>
   )
