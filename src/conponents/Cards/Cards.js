@@ -1,5 +1,5 @@
 import React from "react";
-import CardItem from "./CardItem";
+import CardItem from "../CardItem/CardItem";
 import CardsApi from '../../api/CardsApi'
 
 function Cards () {
