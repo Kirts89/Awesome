@@ -1,21 +1,20 @@
 import React from 'react';
+import { Container } from "react-bootstrap";
+
 import './App.sass';
 
-import Advantages from '../Advantages/Advantages';
-import Cards from '../Cards/Cards';
-import CardsNav from '../CardsNav/CardsNav';
 import Footer from '../Footer/Footer'
 import TopNavbar from '../TopNavbar/TopNavbar'
+import Posts from '../Posts/Posts'
 
 function App() {
   return (
-    <div className="container">
+    <Container>
       <TopNavbar/>
-      <Advantages/>
-      <CardsNav/>
-      <Cards/>
+      <Posts/>
+
       <Footer/>
-    </div>
+    </Container>
   )
 }
 

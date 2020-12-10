@@ -5,7 +5,7 @@ import React from "react";
 
 function TopNavbar() {
   return (
-    <Navbar bg="dark" variant="dark">
+    <Navbar bg="dark" variant="dark" className={s.navbar}>
       <Navbar.Brand href="#home">
         <img src={logo} className={s.logo} alt="logo"/>
       </Navbar.Brand>
