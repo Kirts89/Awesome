@@ -9,12 +9,15 @@ import Posts from '../Posts/Posts'
 
 function App() {
   return (
-    <Container>
-      <TopNavbar/>
-      <Posts/>
-
+    <main>
+      <Container>
+        <TopNavbar/>
+        <div className="content">
+          <Posts/>
+        </div>
+      </Container>
       <Footer/>
-    </Container>
+    </main>
   )
 }
 
