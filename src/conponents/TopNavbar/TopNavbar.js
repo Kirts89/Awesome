@@ -1,7 +1,10 @@
+import React from "react";
 import {Nav, Navbar} from "react-bootstrap";
+import {NavLink} from "react-router-dom";
+
 import logo from "./logo.svg";
 import s from './TopNavbar.module.sass';
-import React from "react";
+
 
 function TopNavbar() {
   return (
@@ -10,9 +13,9 @@ function TopNavbar() {
         <img src={logo} className={s.logo} alt="logo"/>
       </Navbar.Brand>
       <Nav className="mr-auto">
-        <Nav.Link href="#home">Главная</Nav.Link>
-        <Nav.Link href="#features">Вся продукция</Nav.Link>
-        <Nav.Link href="#pricing">Контакты</Nav.Link>
+        <NavLink to="/" className="nav-link">Главная</NavLink>
+        <NavLink to="/posts" className="nav-link">Посты</NavLink>
+        <NavLink to="/contacts" className="nav-link">Контакты</NavLink>
       </Nav>
     </Navbar>
   )
