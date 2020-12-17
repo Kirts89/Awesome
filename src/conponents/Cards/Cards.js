@@ -5,7 +5,7 @@ import CardsApi from '../../api/CardsApi'
 function Cards () {
 
   let cardItems = CardsApi.query().map(
-    (card) => <CardItem card={card} key={card.id}></CardItem>
+    card => <CardItem card={card} key={card.id}></CardItem>
   )
 
   return (

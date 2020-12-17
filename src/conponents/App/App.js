@@ -12,17 +12,18 @@ import {BrowserRouter, Route} from "react-router-dom";
 function App() {
   return (
     <BrowserRouter>
-    <main>
-      <Container>
-        <TopNavbar/>
+      <main>
+        <Container>
+          <TopNavbar/>
+
           <div className="content">
             <Route path="/" component={Home}/>
             <Route path="/posts" component={Posts}/>
           </div>
-      </Container>
-      <Footer/>
-    </main>
-</BrowserRouter>
+        </Container>
+        <Footer/>
+      </main>
+    </BrowserRouter>
   )
 }
 
