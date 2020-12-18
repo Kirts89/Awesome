@@ -15,7 +15,7 @@ function TopNavbar() {
       <Nav className="mr-auto">
         <NavLink to="/" className="nav-link">Главная</NavLink>
         <NavLink to="/posts" className="nav-link">Посты</NavLink>
-        <NavLink to="/contacts" className="nav-link">Контакты</NavLink>
+        <NavLink to="/my-posts" className="nav-link">Добавить пост</NavLink>
       </Nav>
     </Navbar>
   )
