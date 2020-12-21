@@ -4,10 +4,11 @@ import './theme.sass'
 import './index.sass';
 import App from './conponents/App/App';
 import * as serviceWorker from './serviceWorker';
+import states from "./states";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App states={states}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

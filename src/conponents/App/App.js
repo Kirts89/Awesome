@@ -10,7 +10,7 @@ import Posts from '../Posts/Posts'
 import {BrowserRouter, Route} from "react-router-dom";
 import MyPosts from "../MyPosts/MyPosts";
 
-function App() {
+function App(props) {
   return (
     <BrowserRouter>
       <main>
@@ -19,8 +19,8 @@ function App() {
 
           <div className="content">
             <Route exact path="/" component={Home}/>
-            <Route path="/posts" component={Posts}/>
-            <Route path="/my-posts" component={MyPosts}/>
+            <Route path="/posts" render={() => <Posts states={props.states} />}/>
+            <Route path="/my-posts" render={() => <MyPosts states={props.states} />}/>
           </div>
         </Container>
         <Footer/>
