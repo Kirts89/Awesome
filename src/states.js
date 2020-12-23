@@ -1,6 +1,9 @@
-import {renderTree} from "./render";
+import React from "react";
+let renderTree = () => {
+  console.log('state ')
+}
 
-const states = {
+const states = window.states ={
   posts: [
     {
       id: '1',
@@ -49,6 +52,9 @@ const states = {
     states.currentPost.description = event.target.value
     renderTree(states)
   }
+}
+export const subscribe = (observer) => {
+renderTree = observer;
 }
 
 export default states;
