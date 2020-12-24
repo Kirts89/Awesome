@@ -14,13 +14,19 @@ const PostForm = (props) => {
         <Form.Group controlId="formGroupPassword">
           <Form.Label>Описание</Form.Label>
           <Form.Control as="textarea"
-                        onChange={props.states.updateCurrentPostDescription}
                         ref={newPostElement}
                         rows={5}
-                        value={props.states.currentPost.description}
+                        value={props.store.state.currentPost.description}
+                        onChange={
+                          (event) => {
+                            props.store.updateCurrentPostDescription(event)
+                          }
+                        }
           />
         </Form.Group>
-        <Button variant="primary" onClick={props.states.addPost} type="submit">
+        <Button variant="primary"
+                type="submit"
+                onClick={(event) => { props.store.addPost(event) }}>
           Сохранить
         </Button>
       </Form>

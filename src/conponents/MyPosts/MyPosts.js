@@ -7,8 +7,8 @@ const MyPosts = (props) => {
 
   return(
     <div>
-      <PostForm states={props.states}/>
-      <Posts states={props.states}/>
+      <PostForm store={props.store}/>
+      <Posts store={props.store}/>
     </div>
   )
 }
