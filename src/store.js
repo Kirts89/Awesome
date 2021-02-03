@@ -1,3 +1,5 @@
+const UPDATE_CURRENT_POST_DESCRIPTION = 'UPDATE-CURRENT-POST-DESCRIPTION'
+const ADD_POST = 'ADD-POST'
 export default window.store = {
   _state: {
     posts: [
@@ -31,28 +33,34 @@ export default window.store = {
 
   get state() { return this._state },
 
-  addPost(event) {
-    event.preventDefault()
-
-    const defaultPost = {
-      id: this._state.posts.length + 1,
-      imageUrl: "https://previews.123rf.com/images/tunnelmotions/tunnelmotions1908/tunnelmotions190800464/129157125-abstract-glowing-blue-triangle-wireframe-background-walpaper-3d-rendering.jpg",
-      title: Math.random(),
-      description: null,
-    }
-
-    let post = Object.assign(defaultPost, this._state.currentPost)
-
-    this._state.posts.unshift(post)
-    this._renderTree(this)
-  },
-
-  updateCurrentPostDescription(event) {
-    this._state.currentPost.description = event.target.value
-    this._renderTree(this)
-  },
 
   subscribe(renderTreeCallback) {
     this._renderTree = renderTreeCallback;
+  },
+  dispatch(action) {
+    if (action.type === ADD_POST) {
+      const defaultPost = {
+        id: this._state.posts.length + 1,
+        imageUrl: "https://previews.123rf.com/images/tunnelmotions/tunnelmotions1908/tunnelmotions190800464/129157125-abstract-glowing-blue-triangle-wireframe-background-walpaper-3d-rendering.jpg",
+        title: Math.random(),
+        description: null,
+      }
+
+      let post = Object.assign(defaultPost, this._state.currentPost)
+
+      this._state.posts.unshift(post)
+      this._renderTree(this)
+    }
+    else if (action.type === UPDATE_CURRENT_POST_DESCRIPTION) {
+      this._state.currentPost.description = action.description
+      this._renderTree(this)
+    }
+    else {
+      console.error(`Action ${action.type} not found`)
+    }
   }
 }
+export const updateCurrentPostDescriptionActionCreator = (description) =>
+  ({type: UPDATE_CURRENT_POST_DESCRIPTION, description: description})
+export const addPostActionCreator = () =>
+  ({ type: ADD_POST })

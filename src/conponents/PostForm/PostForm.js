@@ -1,8 +1,22 @@
 import React from "react";
 import {Button, Form} from "react-bootstrap";
+import {addPostActionCreator, updateCurrentPostDescriptionActionCreator} from "../../store";
+
 
 const PostForm = (props) => {
   let newPostElement = React.createRef();
+
+  const onChangeDescription = (event) => {
+    let description = event.target.value;
+    let action = updateCurrentPostDescriptionActionCreator(description)
+    props.store.dispatch(action)
+  }
+
+  const onSubmit = (event) => {
+    event.preventDefault()
+    let action = addPostActionCreator() // {type: 'ADD-POST'}
+    props.store.dispatch(action)
+  }
 
   return (
     <div>
@@ -17,16 +31,12 @@ const PostForm = (props) => {
                         ref={newPostElement}
                         rows={5}
                         value={props.store.state.currentPost.description}
-                        onChange={
-                          (event) => {
-                            props.store.updateCurrentPostDescription(event)
-                          }
-                        }
+                        onChange={onChangeDescription}
           />
         </Form.Group>
         <Button variant="primary"
                 type="submit"
-                onClick={(event) => { props.store.addPost(event) }}>
+                onClick={onSubmit}>
           Сохранить
         </Button>
       </Form>
@@ -34,4 +44,4 @@ const PostForm = (props) => {
   )
 }
 
-export default PostForm
+export default PostForm;
