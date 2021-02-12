@@ -19,8 +19,8 @@ function App(props) {
 
           <div className="content">
             <Route exact path="/" component={Home}/>
-            <Route path="/posts" render={() => <Posts store={props.store} />}/>
-            <Route path="/my-posts" render={() => <MyPosts store={props.store} />}/>
+            <Route path="/posts" render={() => <Posts posts={props.state.posts} />}/>
+            <Route path="/my-posts" render={() => <MyPosts posts={props.state.myPosts} />}/>
           </div>
         </Container>
         <Footer/>

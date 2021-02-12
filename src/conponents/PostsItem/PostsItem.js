@@ -2,6 +2,9 @@ import React from "react";
 import {Button, Col, Image, Row} from "react-bootstrap";
 
 function PostsItem(props) {
+  const onSubmit = (event) => {
+    alert("Здесь пока ничего нет")
+  }
   return (
     <Row className="posts-item">
       <Col md="4">
@@ -18,7 +21,9 @@ function PostsItem(props) {
           {props.post.content}
         </p>
         <div className="text-right">
-          <Button variant="outline-primary">Читать далее</Button>
+          <Button
+            variant="outline-primary"
+            onClick={onSubmit}>Читать далее</Button>
         </div>
       </Col>
     </Row>

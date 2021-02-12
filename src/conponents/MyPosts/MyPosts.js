@@ -1,16 +1,16 @@
 import React from "react";
 import Posts from "../Posts/Posts";
-import PostForm from "../PostForm/PostForm";
 import PostsItem from "../PostsItem/PostsItem";
+import PostFormContainer from "../PostForm/PostFormContainer";
 
 
 const MyPosts = (props) => {
-
+// debugger
   return(
     <div>
-      <PostForm store={props.store}/>
-      <PostsItem post={props.store.state.currentPost}/>
-      <Posts store={props.store}/>
+      <PostFormContainer posts={props.posts}/>
+      <PostsItem post={props.posts.current}/>
+      <Posts posts={props.posts}/>
     </div>
   )
 }
