@@ -7,11 +7,14 @@ import './index.sass';
 import * as serviceWorker from './serviceWorker';
 import App from "./conponents/App/App";
 import store from "./redux/store";
+import {Provider} from "react-redux";
 
 const renderTree = (state) => {
   ReactDOM.render(
     <React.StrictMode>
+      <Provider store={store}>
       <App state={state}/>
+      </Provider>
     </React.StrictMode>,
     document.getElementById('root')
   );

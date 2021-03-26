@@ -1,46 +1,40 @@
 import React from "react";
 import {
-  addPostActionCreator, updateCurrentPostContentActionCreator,
-  updateCurrentPostDescriptionActionCreator,
-  updateCurrentPostTitleActionCreator
+  addPostAC, updateCurrentPostContentAC,
+  updateCurrentPostDescriptionAC,
+  updateCurrentPostTitleAC
 } from "../../redux/myPostsReducer";
 
-import store from "../../redux/store";
 import PostForm from "./PostForm";
+import {connect} from "react-redux";
 
-
-const PostFormContainer = (props) => {
-  // PROPS {posts: {items: [], current: {}}}
-
-  const onChangeTitle = (title) => {
-   let action = updateCurrentPostTitleActionCreator(title)
-   store.dispatch(action)
+const mapStateToProps = (state) => {
+  return {
+    post: state.myPosts.current,
+    posts: state.myPosts.items,
   }
-
-  const onChangeDescription = (description) => {
-    let action = updateCurrentPostDescriptionActionCreator(description)
-    store.dispatch(action)
-  }
-
-  const  onChangeContent = (content) => {
-    let action = updateCurrentPostContentActionCreator(content)
-    store.dispatch(action)
-  }
-
-  const onSubmit = () => {
-    let action = addPostActionCreator() // {type: 'ADD-POST'}
-    store.dispatch(action)
-  }
-
-  return (
-    <PostForm
-      post={props.posts.current}
-      onChangeTitle={onChangeTitle}
-      onChangeDescription={onChangeDescription}
-      onChangeContent={onChangeContent}
-      onSubmit={onSubmit}
-    />
-    )
 }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onChangeTitle: (title) => {
+      let action = updateCurrentPostTitleAC(title)
+      dispatch(action)
+    },
+    onChangeDescription: (description) => {
+      let action = updateCurrentPostDescriptionAC(description)
+      dispatch(action)
+    },
+    onChangeContent: (content) => {
+      let action = updateCurrentPostContentAC(content)
+      dispatch(action)
+    },
+    onSubmit: () => {
+      let action = addPostAC() // {type: 'ADD-POST'}
+      dispatch(action)
+    }
+  }
+}
+
+const PostFormContainer = connect(mapStateToProps, mapDispatchToProps)(PostForm)
 
 export default PostFormContainer;

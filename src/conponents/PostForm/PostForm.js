@@ -4,7 +4,6 @@ import {Button, Form} from "react-bootstrap";
 
 const PostForm = (props) => {
   // PROPS {posts: {items: [], current: {}}}
-
   const onChangeTitle = (event) => {
     let title = event.target.value;
     props.onChangeTitle(title)
