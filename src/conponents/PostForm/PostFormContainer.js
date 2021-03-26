@@ -1,4 +1,3 @@
-import React from "react";
 import {
   addPostAC, updateCurrentPostContentAC,
   updateCurrentPostDescriptionAC,
@@ -29,7 +28,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(action)
     },
     onSubmit: () => {
-      let action = addPostAC() // {type: 'ADD-POST'}
+      let action = addPostAC()
       dispatch(action)
     }
   }

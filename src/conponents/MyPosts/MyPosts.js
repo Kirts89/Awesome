@@ -2,17 +2,20 @@ import React from "react";
 import Posts from "../Posts/Posts";
 import PostsItem from "../PostsItem/PostsItem";
 import PostFormContainer from "../PostForm/PostFormContainer";
-import Axios from "../../Axios";
+import axios from "../../axios";
 
 
 class MyPosts extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    Axios.get('posts').then((response) => {
-      console.log(response)
-      //props.setMyPosts(posts)
-    })}
+    if (!props.posts.loaded) {
+      axios.get('posts').then((response) => {
+        console.log(response)
+        props.setMyPosts(response.data)
+      })
+    }
+  }
   render() {
     return(
       <div>

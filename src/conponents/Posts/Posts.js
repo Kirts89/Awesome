@@ -3,7 +3,7 @@ import PostsItem from "../PostsItem/PostsItem";
 
 
 function Posts (props) {
-  const postsElements = props.posts.items.map(post => <PostsItem post={post} key={post.id}/>)
+  const postsElements = props.posts.items.map(post => <PostsItem post={post} key={post._id}/>)
 
   return(
     <div className="posts">
