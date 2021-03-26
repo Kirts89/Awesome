@@ -1,5 +1,3 @@
-import React from "react";
-
 const UPDATE_CURRENT_POST_TITLE = 'UPDATE-CURRENT-POST-TITLE'
 const UPDATE_CURRENT_POST_DESCRIPTION = 'UPDATE-CURRENT-POST-DESCRIPTION'
 const UPDATE_CURRENT_POST_CONTENT = 'UPDATE-CURRENT-POST-CONTENT'
@@ -18,11 +16,10 @@ const BLANK_POST = {
 let initialState = {
   items: [],
   current: {...BLANK_POST},
+  loaded: false,
 }
 
 const myPostsReducer = (state = initialState, action) => {
-  console.log('mpr',state)
-  // state #=> {items: [{}], current: {}}
   switch (action.type) {
     case ADD_POST:
       return {
@@ -42,7 +39,8 @@ const myPostsReducer = (state = initialState, action) => {
     case SET_MY_POSTS:
       return {
         ...state,
-        items: action.posts
+        items: action.posts,
+        loaded: true,
       }
     case UPDATE_CURRENT_POST_DESCRIPTION:
       return {
