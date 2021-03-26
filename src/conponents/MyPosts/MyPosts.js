@@ -5,19 +5,23 @@ import PostFormContainer from "../PostForm/PostFormContainer";
 import Axios from "../../Axios";
 
 
-const MyPosts = (props) => {
+class MyPosts extends React.Component {
+  constructor() {
+    super();
 
-  Axios.get('posts').then((response) => {
-    console.log(response)
-    //props.setMyPosts(posts)
-  })
-  return(
-    <div>
-      <PostFormContainer/>
-      <PostsItem post={props.posts.current}/>
-      <Posts posts={props.posts}/>
-    </div>
-  )
+    Axios.get('posts').then((response) => {
+      console.log(response)
+      //props.setMyPosts(posts)
+    })}
+  render() {
+    return(
+      <div>
+        <PostFormContainer/>
+        <PostsItem post={this.props.posts.current}/>
+        <Posts posts={this.props.posts}/>
+      </div>
+    )
+  }
 }
 
 export default MyPosts
