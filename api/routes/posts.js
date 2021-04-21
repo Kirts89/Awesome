@@ -3,20 +3,60 @@ const Post = require('../models/Post')
 
 const router = Router()
 
-router.get('/api/posts', async (request, response) => {
-  // return response.json([{id: 1, title: 'Title', description: 'Description', content: 'Content', imageUrl: '/demo.jpg'}])
+const DEFAULT_FETCHING_MS = 500
 
-  const posts = await Post.find({})
+function sleep(ms) {
+  ms = ms || DEFAULT_FETCHING_MS
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms)
+  })
+}
+
+router.get('/api/posts', async (request, response) => {
+  await sleep()
+  const posts = await Post.find({}).sort('-_id')
+
   response.json(posts);
 })
 
-router.post('/api/posts', async (request, response) => {
-  const post = new Post({
-    title: "Title " + Math.random(),
-    description: "Description " + Math.random(),
-  })
+router.get('/api/posts/:id', async (request, response) => {
+  await sleep()
+  const post = await Post.findOne({id: request.body.id})
 
-  await post.save()
+  response.json(post);
+})
+
+router.post('/api/posts', async (request, response) => {
+  await sleep()
+  const post = new Post(request.body.post)
+
+  try {
+    await post.save()
+    response.json(post)
+  } catch (err) {
+    if (err.name === 'ValidationError') {
+      return response.status(400).json({ error: err.message });
+    }
+  }
+})
+
+router.put('/api/posts/:id', async (request, response) => {
+  await sleep()
+
+  try {
+    const post = await Post.findOneAndUpdate(request.body)
+    response.json(post)
+  } catch (err) {
+    if (err.name === 'ValidationError') {
+      return response.status(400).json({ error: err.message });
+    }
+  }
+})
+
+router.delete('/api/posts/:id', async (request, response) => {
+  await sleep()
+  const post = await Post.findOneAndDelete(request.body)
+
   response.json(post)
 })
 

@@ -1,20 +1,33 @@
+import React from "react";
 import {connect} from "react-redux";
 import MyPosts from "./MyPosts";
-import {setMyPostsAC} from "../../redux/myPostsReducer";
+import {setMyPosts, setMyPostsIsFetching} from "../../redux/myPostsReducer";
+import axios from "../../axios";
+import Loading from "../Loading/Loading";
+
+class MyPostsContainer extends React.Component {
+  componentDidMount() {
+    this.props.setMyPostsIsFetching()
+    axios.get('posts').then((response) => {
+      this.props.setMyPosts(response.data)
+    })
+  }
+  render() {
+    return <>
+      {this.props.posts.isFetching ? <Loading/> : <MyPosts posts={this.props.posts}/>}
+    </>
+  }
+}
 
 let mapStateToProps = (state) => {
   return {
-    posts: state.myPosts
+    posts: state.myPosts,
   }
 }
 
-let mapDispatchToProps = (dispatch) => {
-
-  return {
-    setMyPosts: (posts) => {
-      let action = setMyPostsAC(posts)
-      dispatch(action)
-    }
-  }
+let mapDispatchToProps = {
+  setMyPosts,
+  setMyPostsIsFetching,
 }
-export default connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyPostsContainer)

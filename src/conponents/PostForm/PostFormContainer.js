@@ -1,11 +1,20 @@
 import {
-  addPostAC, updateCurrentPostContentAC,
-  updateCurrentPostDescriptionAC,
-  updateCurrentPostTitleAC
+  addPost as addPostAC,
+  updateCurrentPostContent,
+  updateCurrentPostDescription,
+  updateCurrentPostTitle
 } from "../../redux/myPostsReducer";
 
 import PostForm from "./PostForm";
 import {connect} from "react-redux";
+import axios from "../../axios";
+
+const addPost = (post) => {
+  axios.post('posts', {post: post}).then((response) => {
+    post = response.data
+  })
+  return addPostAC(post)
+}
 
 const mapStateToProps = (state) => {
   return {
@@ -13,25 +22,12 @@ const mapStateToProps = (state) => {
     posts: state.myPosts.items,
   }
 }
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onChangeTitle: (title) => {
-      let action = updateCurrentPostTitleAC(title)
-      dispatch(action)
-    },
-    onChangeDescription: (description) => {
-      let action = updateCurrentPostDescriptionAC(description)
-      dispatch(action)
-    },
-    onChangeContent: (content) => {
-      let action = updateCurrentPostContentAC(content)
-      dispatch(action)
-    },
-    onSubmit: () => {
-      let action = addPostAC()
-      dispatch(action)
-    }
-  }
+
+const mapDispatchToProps = {
+  addPost,
+  updateCurrentPostContent,
+  updateCurrentPostDescription,
+  updateCurrentPostTitle,
 }
 
 const PostFormContainer = connect(mapStateToProps, mapDispatchToProps)(PostForm)

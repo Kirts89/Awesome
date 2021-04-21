@@ -4,9 +4,9 @@ const UPDATE_CURRENT_POST_CONTENT = 'UPDATE-CURRENT-POST-CONTENT'
 const DEMO_2_IMAGE_URL = '/demo2.jpg'
 const ADD_POST = 'ADD-POST'
 const SET_MY_POSTS = 'SET-MY-POSTS'
+const SET_MY_POSTS_IS_FETCHING = 'SET-MY-POSTS-IS-FETCHING'
 
 const BLANK_POST = {
-  _id: null,
   title: '',
   description: '',
   content: '',
@@ -16,7 +16,7 @@ const BLANK_POST = {
 let initialState = {
   items: [],
   current: {...BLANK_POST},
-  loaded: false,
+  isFetching: false,
 }
 
 const myPostsReducer = (state = initialState, action) => {
@@ -29,19 +29,20 @@ const myPostsReducer = (state = initialState, action) => {
         },
         items: [
           {
-            ...state.current,
+            ...action.post,
             _id: state.items.length + 1,
           },
           ...state.items,
         ],
-
       }
+
     case SET_MY_POSTS:
       return {
         ...state,
         items: action.posts,
-        loaded: true,
+        isFetching: false,
       }
+
     case UPDATE_CURRENT_POST_DESCRIPTION:
       return {
         ...state,
@@ -69,21 +70,29 @@ const myPostsReducer = (state = initialState, action) => {
         }
       }
 
+    case SET_MY_POSTS_IS_FETCHING:
+      return {
+        ...state,
+        isFetching: true,
+      }
+
     default:
       return state
   }
 }
 
-export const updateCurrentPostTitleAC = (title) =>
-  ({type: UPDATE_CURRENT_POST_TITLE, title: title})
-export const updateCurrentPostDescriptionAC = (description) =>
-  ({type: UPDATE_CURRENT_POST_DESCRIPTION, description: description})
-export const updateCurrentPostContentAC = (content) =>
-  ({type:UPDATE_CURRENT_POST_CONTENT, content: content})
-export const addPostAC = () =>
-  ({type: ADD_POST})
-export const setMyPostsAC = (posts) =>
-  ({type: SET_MY_POSTS, posts: posts})
+export const updateCurrentPostTitle = (title) =>
+  ({type: UPDATE_CURRENT_POST_TITLE, title})
+export const updateCurrentPostDescription = (description) =>
+  ({type: UPDATE_CURRENT_POST_DESCRIPTION, description})
+export const updateCurrentPostContent = (content) =>
+  ({type:UPDATE_CURRENT_POST_CONTENT, content})
+export const addPost = (post) =>
+  ({type: ADD_POST, post})
+export const setMyPosts = (posts) =>
+  ({type: SET_MY_POSTS, posts})
+export const setMyPostsIsFetching = () =>
+  ({type: SET_MY_POSTS_IS_FETCHING})
 
 export default myPostsReducer
 

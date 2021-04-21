@@ -1,32 +1,30 @@
 import React from "react";
 import {Button, Form} from "react-bootstrap";
 
-
 const PostForm = (props) => {
   // PROPS {posts: {items: [], current: {}}}
   const onChangeTitle = (event) => {
     let title = event.target.value;
-    props.onChangeTitle(title)
+    props.updateCurrentPostTitle(title)
   }
 
   const onChangeDescription = (event) => {
     let description = event.target.value;
-    props.onChangeDescription(description)
+    props.updateCurrentPostDescription(description)
   }
 
   const  onChangeContent = (event) => {
     let content = event.target.value;
-    props.onChangeContent(content)
+    props.updateCurrentPostContent(content)
   }
 
   const onSubmit = (event) => {
     event.preventDefault()
-    props.onSubmit()
+    props.addPost(props.post)
   }
 
   return (
     <div>
-      {JSON.stringify(props.post)}
       <Form>
         <Form.Group controlId="formGroupEmail">
           <Form.Label>Заголовок</Form.Label>

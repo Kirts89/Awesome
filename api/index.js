@@ -4,6 +4,9 @@ const postRouters = require('./routes/posts')
 const PORT = process.env.port || 3080
 const app = express();
 
+app.use(express.urlencoded());
+app.use(express.json());
+
 app.use(postRouters)
 
 async function start() {
@@ -23,4 +26,4 @@ async function start() {
   }
 }
 
-start().then(r => {});
+start().then(_r => {});
