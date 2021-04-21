@@ -9,6 +9,7 @@ import Home from '../Home/Home'
 import TopNavbar from '../TopNavbar/TopNavbar'
 import Posts from '../Posts/Posts'
 import MyPostsContainer from "../MyPosts/MyPostsContainer";
+import PostContainer from "../Post/PostContainer";
 
 function App(props) {
   return (
@@ -20,6 +21,7 @@ function App(props) {
           <div className="content">
             <Route exact path="/" component={Home}/>
             <Route path="/posts" render={() => <Posts posts={props.state.posts} />}/>
+            <Route path="/posts/:id" component={PostContainer}/>
             <Route path="/my-posts" component={MyPostsContainer}/>
           </div>
         </Container>

@@ -1,10 +1,10 @@
-const UPDATE_CURRENT_POST_TITLE = 'UPDATE-CURRENT-POST-TITLE'
-const UPDATE_CURRENT_POST_DESCRIPTION = 'UPDATE-CURRENT-POST-DESCRIPTION'
-const UPDATE_CURRENT_POST_CONTENT = 'UPDATE-CURRENT-POST-CONTENT'
+const UPDATE_CURRENT_POST_TITLE = 'UPDATE_CURRENT_POST_TITLE'
+const UPDATE_CURRENT_POST_DESCRIPTION = 'UPDATE_CURRENT_POST_DESCRIPTION'
+const UPDATE_CURRENT_POST_CONTENT = 'UPDATE_CURRENT_POST_CONTENT'
 const DEMO_2_IMAGE_URL = '/demo2.jpg'
-const ADD_POST = 'ADD-POST'
-const SET_MY_POSTS = 'SET-MY-POSTS'
-const SET_MY_POSTS_IS_FETCHING = 'SET-MY-POSTS-IS-FETCHING'
+const ADD_POST = 'ADD_POST'
+const SET_MY_POSTS = 'SET_MY_POSTS'
+const SET_MY_POSTS_IS_FETCHING = 'SET_MY_POSTS_IS_FETCHING'
 
 const BLANK_POST = {
   title: '',
@@ -43,6 +43,12 @@ const myPostsReducer = (state = initialState, action) => {
         isFetching: false,
       }
 
+    case SET_MY_POSTS_IS_FETCHING:
+      return {
+        ...state,
+        isFetching: true,
+      }
+
     case UPDATE_CURRENT_POST_DESCRIPTION:
       return {
         ...state,
@@ -68,12 +74,6 @@ const myPostsReducer = (state = initialState, action) => {
           ...state.current,
           content: action.content,
         }
-      }
-
-    case SET_MY_POSTS_IS_FETCHING:
-      return {
-        ...state,
-        isFetching: true,
       }
 
     default:

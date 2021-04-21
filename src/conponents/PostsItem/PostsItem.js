@@ -1,10 +1,8 @@
 import React from "react";
 import {Button, Col, Image, Row} from "react-bootstrap";
+import {Link} from "react-router-dom";
 
 function PostsItem(props) {
-  const onSubmit = (event) => {
-    alert("Здесь пока ничего нет")
-  }
   return (
     <Row className="posts-item">
       <Col md="4">
@@ -21,9 +19,9 @@ function PostsItem(props) {
           {props.post.content}
         </p>
         <div className="text-right">
-          <Button
-            variant="outline-primary"
-            onClick={onSubmit}>Читать далее</Button>
+          <Link to={`/posts/${props.post._id}`}>
+            <Button variant="outline-primary">Читать далее</Button>
+          </Link>
         </div>
       </Col>
     </Row>
