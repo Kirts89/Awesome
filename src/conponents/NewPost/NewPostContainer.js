@@ -1,35 +1,35 @@
 import {
-  addPost as addPostAC,
+  addPost,
   updateCurrentPostContent,
   updateCurrentPostDescription,
   updateCurrentPostTitle
 } from "../../redux/myPostsReducer";
 
-import PostForm from "./PostForm";
 import {connect} from "react-redux";
-import axios from "../../axios";
+import PostForm from "../PostForm/PostForm";
+import {PostsAPI} from "../../api/api";
 
-const addPost = (post) => {
-  axios.post('posts', {post: post}).then((response) => {
-    post = response.data
-  })
-  return addPostAC(post)
+const onSubmit = (post) => {
+  //PostsAPI.create(post).then(data => addPost(data.post))
+  PostsAPI.create(post)
+  return addPost(post)
 }
 
 const mapStateToProps = (state) => {
   return {
+    title: 'New Post',
     post: state.myPosts.current,
     posts: state.myPosts.items,
   }
 }
 
 const mapDispatchToProps = {
-  addPost,
+  onSubmit,
   updateCurrentPostContent,
   updateCurrentPostDescription,
   updateCurrentPostTitle,
 }
 
-const PostFormContainer = connect(mapStateToProps, mapDispatchToProps)(PostForm)
+const NewPostContainer = connect(mapStateToProps, mapDispatchToProps)(PostForm)
 
-export default PostFormContainer;
+export default NewPostContainer;

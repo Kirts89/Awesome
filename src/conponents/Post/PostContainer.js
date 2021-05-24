@@ -1,17 +1,17 @@
 import React from "react";
-import axios from "../../axios";
 import Loading from "../Loading/Loading";
 import {setPost, setPostIsFetching} from "../../redux/postReducer";
 import {connect} from "react-redux";
 import Post from "./Post";
 import {withRouter} from "react-router-dom";
+import {PostsAPI} from "../../api/api";
 
 class PostContainer extends React.Component {
   componentDidMount() {
     let id = this.props.match.params.id
     this.props.setPostIsFetching()
-    axios.get('posts/' + id).then((response) => {
-      this.props.setPost(response.data)
+    PostsAPI.getPosts().then((data) => {
+      this.props.setPost(data)
     })
   }
   render() {

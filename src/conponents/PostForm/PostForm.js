@@ -2,7 +2,6 @@ import React from "react";
 import {Button, Form} from "react-bootstrap";
 
 const PostForm = (props) => {
-  // PROPS {posts: {items: [], current: {}}}
   const onChangeTitle = (event) => {
     let title = event.target.value;
     props.updateCurrentPostTitle(title)
@@ -20,11 +19,12 @@ const PostForm = (props) => {
 
   const onSubmit = (event) => {
     event.preventDefault()
-    props.addPost(props.post)
+    props.onSubmit(props.post)
   }
 
   return (
     <div>
+      <h3>{props.title}</h3>
       <Form>
         <Form.Group controlId="formGroupEmail">
           <Form.Label>Заголовок</Form.Label>

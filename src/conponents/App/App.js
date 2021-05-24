@@ -10,6 +10,8 @@ import TopNavbar from '../TopNavbar/TopNavbar'
 import Posts from '../Posts/Posts'
 import MyPostsContainer from "../MyPosts/MyPostsContainer";
 import PostContainer from "../Post/PostContainer";
+import NewPostContainer from "../NewPost/NewPostContainer";
+import EditPostContainer from "../EditPost/EditPostContainer";
 
 function App(props) {
   return (
@@ -20,9 +22,11 @@ function App(props) {
 
           <div className="content">
             <Route exact path="/" component={Home}/>
-            <Route path="/posts" render={() => <Posts posts={props.state.posts} />}/>
-            <Route path="/posts/:id" component={PostContainer}/>
-            <Route path="/my-posts" component={MyPostsContainer}/>
+            <Route exact path="/posts" render={() => <Posts posts={props.state.posts} />}/>
+            <Route exact path="/posts/new" component={NewPostContainer}/>
+            <Route exact path="/posts/show/:id" component={PostContainer}/>
+            <Route exact path="/posts/edit/:id" component={EditPostContainer}/>
+            <Route exact path="/my-posts" component={MyPostsContainer}/>
           </div>
         </Container>
         <Footer/>

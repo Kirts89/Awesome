@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Col, Image, Row} from "react-bootstrap";
+import {ButtonGroup, Button, Col, Image, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
 function PostsItem(props) {
@@ -19,9 +19,23 @@ function PostsItem(props) {
           {props.post.content}
         </p>
         <div className="text-right">
-          <Link to={`/posts/${props.post._id}`}>
-            <Button variant="outline-primary">Читать далее</Button>
-          </Link>
+          <ButtonGroup>
+            <Link
+              className="btn btn-outline-primary"
+              role="button"
+              to={`/posts/show/${props.post._id}`}
+            >
+              Читать далее
+            </Link>{' '}
+            <Link
+              className="btn btn-outline-primary"
+              role="button"
+              to={`/posts/edit/${props.post._id}`}
+            >
+              Редактировать
+            </Link>{' '}
+            <Button variant="outline-primary">Удалить</Button>
+          </ButtonGroup>
         </div>
       </Col>
     </Row>

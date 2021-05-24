@@ -1,16 +1,20 @@
 import React from "react";
-import Posts from "../Posts/Posts";
-import PostsItem from "../PostsItem/PostsItem";
-import PostFormContainer from "../PostForm/PostFormContainer";
+import Posts from "../Posts/Posts"
+import {Link} from "react-router-dom";
 
 function MyPosts(props)  {
-  return(
-    <div>
-      <PostFormContainer/>
-      <PostsItem post={props.posts.current}/>
-      <Posts posts={props.posts}/>
+  return <>
+    <div className="text-right">
+      <Link
+        className="btn btn-outline-primary"
+        role="button"
+        to={`/posts/new`}
+      >
+        Добавить
+      </Link>
     </div>
-  )
+    <Posts posts={props.posts}/>
+  </>
 }
 
 

@@ -1,12 +1,21 @@
-const express = require('express');
-const mongoose = require('mongoose');
+const express = require('express')
+const mongoose = require('mongoose')
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
 const postRouters = require('./routes/posts')
+const sessionsRouters = require('./routes/sessions')
 const PORT = process.env.port || 3080
 const app = express();
 
-app.use(express.urlencoded());
-app.use(express.json());
+app.use(express.urlencoded())
+app.use(express.json())
+app.use(cookieParser())
+app.use(session({
+  secret: 'keyboard cat',
+  cookie: {}
+}))
 
+app.use(sessionsRouters)
 app.use(postRouters)
 
 async function start() {

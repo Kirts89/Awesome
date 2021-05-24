@@ -1,4 +1,4 @@
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 
 import myPostsReducer from "./myPostsReducer";
 import postsReducer from "./postsReducer";
@@ -10,5 +10,5 @@ let reducers = combineReducers({
   postState: postReducer,
 })
 
-let store = createStore(reducers)
+let store = createStore(reducers, applyMiddleware())
 export default store
