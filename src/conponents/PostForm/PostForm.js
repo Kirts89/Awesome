@@ -1,5 +1,6 @@
 import React from "react";
 import {Button, Form} from "react-bootstrap";
+import {withRouter} from "react-router-dom";
 
 const PostForm = (props) => {
   const onChangeTitle = (event) => {
@@ -19,7 +20,7 @@ const PostForm = (props) => {
 
   const onSubmit = (event) => {
     event.preventDefault()
-    props.onSubmit(props.post)
+    props.onSubmit(props.post, props)
   }
 
   return (
@@ -61,4 +62,6 @@ const PostForm = (props) => {
   )
 }
 
-export default PostForm;
+let WithUrlDataContainer = withRouter(PostForm)
+
+export default WithUrlDataContainer;

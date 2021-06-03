@@ -1,30 +1,29 @@
 import {
-  addPost,
   updateCurrentPostContent,
   updateCurrentPostDescription,
   updateCurrentPostTitle
-} from "../../redux/myPostsReducer";
+} from "../../redux/postReducer";
 
 import {connect} from "react-redux";
 import PostForm from "../PostForm/PostForm";
 import {PostsAPI} from "../../api/api";
 
-const onSubmit = (post) => {
-  //PostsAPI.create(post).then(data => addPost(data.post))
+const onSubmit = (post, props) => {
   PostsAPI.create(post)
-  return addPost(post)
+    .then((_data) => {
+      props.history.push('/my-posts');
+    })
 }
 
 const mapStateToProps = (state) => {
   return {
     title: 'New Post',
-    post: state.myPosts.current,
-    posts: state.myPosts.items,
+    post: state.postState.post,
+    onSubmit,
   }
 }
 
 const mapDispatchToProps = {
-  onSubmit,
   updateCurrentPostContent,
   updateCurrentPostDescription,
   updateCurrentPostTitle,

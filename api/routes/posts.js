@@ -21,7 +21,7 @@ router.get('/api/posts', async (request, response) => {
 
 router.get('/api/posts/:id', async (request, response) => {
   await sleep()
-  const post = await Post.findOne({id: request.body.id})
+  const post = await Post.findOne({_id: request.params.id})
 
   response.json(post);
 })
@@ -44,7 +44,8 @@ router.put('/api/posts/:id', async (request, response) => {
   await sleep()
 
   try {
-    const post = await Post.findOneAndUpdate(request.body)
+    await Post.updateOne({ _id: request.params.id }, request.body.post)
+    const post = await Post.findOne({_id: request.params.id})
     response.json(post)
   } catch (err) {
     if (err.name === 'ValidationError') {

@@ -10,9 +10,10 @@ class PostContainer extends React.Component {
   componentDidMount() {
     let id = this.props.match.params.id
     this.props.setPostIsFetching()
-    PostsAPI.getPosts().then((data) => {
-      this.props.setPost(data)
-    })
+    PostsAPI.get(id)
+      .then((data) => {
+        this.props.setPost(data)
+      })
   }
   render() {
     return <>

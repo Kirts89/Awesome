@@ -10,13 +10,13 @@ export const PostsAPI = {
     return Axios.get('posts/', params).then(response => response.data)
   },
   get(id) {
-    return Axios.get('posts/', id).then(response => response.data)
+    return Axios.get('posts/' + id).then(response => response.data)
   },
   create(post) {
     return Axios.post('posts/', {post: post}).then((response) => response.data)
   },
   update(post) {
-    return Axios.put('posts/' + post.id, {post: post}).then(response => response.data)
+    return Axios.put('posts/' + post._id, {post: post}).then(response => response.data)
   },
   destroy(id) {
     return Axios.delete('posts/' + id).then(response => response.data)

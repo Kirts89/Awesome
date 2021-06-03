@@ -34,7 +34,8 @@ function PostsItem(props) {
             >
               Редактировать
             </Link>{' '}
-            <Button variant="outline-primary">Удалить</Button>
+            <Button variant="outline-primary"
+            >Удалить</Button>
           </ButtonGroup>
         </div>
       </Col>

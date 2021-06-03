@@ -21,7 +21,7 @@ function App(props) {
           <TopNavbar/>
 
           <div className="content">
-            <Route exact path="/" component={Home}/>
+            <Route exact path="/" component={MyPostsContainer}/>
             <Route exact path="/posts" render={() => <Posts posts={props.state.posts} />}/>
             <Route exact path="/posts/new" component={NewPostContainer}/>
             <Route exact path="/posts/show/:id" component={PostContainer}/>
