@@ -12,8 +12,8 @@ class MyPostsContainer extends React.Component {
     // PostsAPI.getAll('posts').then((data) => {
     //this.props.setMyPosts(data)})
     this.props.setMyPostsIsFetching()
-     axios.get('api/posts/').then((response) => {
-      this.props.setMyPosts(response.data)
+    PostsAPI.getAll().then((data) => {
+      this.props.setMyPosts(data)
     })
   }
   render() {
