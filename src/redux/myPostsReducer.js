@@ -33,14 +33,7 @@ export const setMyPosts = (posts) =>
 export const setMyPostsIsFetching = () =>
   ({type: SET_MY_POSTS_IS_FETCHING})
 
-export const getPostsThunk = () => {
-  return (dispatch) => {
-    dispatch(setMyPostsIsFetching())
-    PostsAPI.getAll('posts').then((data) => {
-      dispatch(setMyPosts(data))
-    })
-  }
-}
+
 
 
 export default myPostsReducer

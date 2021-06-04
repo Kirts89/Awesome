@@ -1,13 +1,20 @@
 import React from "react";
 import {connect} from "react-redux";
 import MyPosts from "./MyPosts";
-import {getPostsThunk, setMyPosts, setMyPostsIsFetching} from "../../redux/myPostsReducer";
+import {setMyPosts, setMyPostsIsFetching} from "../../redux/myPostsReducer";
 import Loading from "../Loading/Loading";
 import {PostsAPI} from "../../api/api";
+import axios from "axios";
 
 class MyPostsContainer extends React.Component {
   componentDidMount() {
-  getPostsThunk()
+    //this.props.setMyPostsIsFetching()
+    // PostsAPI.getAll('posts').then((data) => {
+    //this.props.setMyPosts(data)})
+    this.props.setMyPostsIsFetching()
+     axios.get('api/posts/').then((response) => {
+      this.props.setMyPosts(response.data)
+    })
   }
   render() {
     return <>
@@ -25,7 +32,6 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = {
   setMyPosts,
   setMyPostsIsFetching,
-  getPostsThunk
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyPostsContainer)
