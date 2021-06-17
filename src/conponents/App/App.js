@@ -5,7 +5,6 @@ import {BrowserRouter, Route} from "react-router-dom";
 import './App.sass';
 
 import Footer from '../Footer/Footer'
-import Home from '../Home/Home'
 import TopNavbar from '../TopNavbar/TopNavbar'
 import Posts from '../Posts/Posts'
 import MyPostsContainer from "../MyPosts/MyPostsContainer";

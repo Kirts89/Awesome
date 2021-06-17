@@ -29,11 +29,18 @@ const myPostsReducer = (state = initialState, action) => {
 }
 
 export const setMyPosts = (posts) =>
-  ({type: SET_MY_POSTS, posts})
+    ({type: SET_MY_POSTS, posts})
 export const setMyPostsIsFetching = () =>
-  ({type: SET_MY_POSTS_IS_FETCHING})
+    ({type: SET_MY_POSTS_IS_FETCHING})
 
-
+export const getPosts = () => {
+  return (dispatch) => {
+    dispatch(setMyPostsIsFetching())
+    PostsAPI.getAll().then((data) => {
+      dispatch(setMyPosts(data))
+    })
+  }
+}
 
 
 export default myPostsReducer

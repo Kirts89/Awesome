@@ -10,5 +10,5 @@ let reducers = combineReducers({
   postState: postReducer,
 })
 
-let store = createStore(reducers)
+let store = createStore(reducers, applyMiddleware(thunkMiddleware))
 export default store
