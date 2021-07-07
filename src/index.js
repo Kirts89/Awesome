@@ -5,7 +5,7 @@ import './theme.sass'
 import './index.sass';
 
 import * as serviceWorker from './serviceWorker';
-import App from "./conponents/App/App";
+import App from "./components/App/App";
 import store from "./redux/store";
 import {Provider} from "react-redux";
 
